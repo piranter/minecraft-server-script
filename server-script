@@ -1,6 +1,6 @@
 #!/bin/bash
+echo $(date) - executing server-script >> ~/minecraft-server/server-log
 screen -S minecraft-server -X stuff 'stop\n' || screen -dmS minecraft-server && echo $(date) - screen crashed >> ~/minecraft-server/server-log
 sleep 180
 screen -S minecraft-server -X stuff 'cd ~/minecraft-server/\n'
-screen -S minecraft-server -X stuff 'SCRIPTSTARTED=$EPOCHSECONDS; while (( $EPOCHSECONDS < $SCRIPTSTARTED + 86100)); do java -Xmx1024M -Xms1024M -jar server.jar nogui; echo $(date) - server crashed >> server-log; sleep 10; done\n'
-
+screen -S minecraft-server -X stuff 'SCRIPTSTARTED=$(date +%s); while (( $(date +%s) < $SCRIPTSTARTED + 86100 )); do java -Xmx1024M -Xms1024M -jar server.jar nogui; echo $(date) - server crashed >> server-log; sleep 10; done\n'

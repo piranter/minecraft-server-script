@@ -7,4 +7,4 @@ The script logs server crashes in a server-log file.
 To be able to execute the script you'll need set the file permissions to be executable like this: `sudo chmod 755 server-script`.
 
 For the cronjob you'll need to add the following line to your /etc/crontab
-`0 0     * * *   user    cd ~/minecraft-server/server-script`
+`0 0 * * * user ~/minecraft-server/server-script`
