@@ -4,13 +4,13 @@ screen -S minecraft-server -X stuff 'say Server gets restarted in 30 seconds.\n'
 sleep 30
 screen -S minecraft-server -X stuff 'stop\n'
 sleep 180
-screen -S minecraft-server -X stuff 'echo $(date) - server stopped successfully >> ~/minecraft-server/server-log\n'
+screen -S minecraft-server -X stuff 'echo $(date) - server loop stopped >> ~/minecraft-server/server-log\n'
 sleep 15
 screen -S minecraft-server -X quit
 sleep 30
 screen -dmS minecraft-server
 sleep 30
-screen -S minecraft-server -X stuff 'bash && cd ~/minecraft-server/\n'
-screen -S minecraft-server -X stuff 'echo $(date) - screen started successfully >> ~/minecraft-server/server-log\n'
+screen -S minecraft-server -X stuff 'cd ~/minecraft-server/ && bash\n'
+screen -S minecraft-server -X stuff 'echo $(date) - screen started >> ~/minecraft-server/server-log\n'
 sleep 15
-screen -S minecraft-server -X stuff 'SCRIPTSTARTED=$(date +%s); while (( $(date +%s) < \$SCRIPTSTARTED + 85800)); do java -Xmx1024M -Xms1024M -jar server.jar nogui; echo $(date) - server stopped >> server-log; sleep 30; done\n'
+screen -S minecraft-server -X stuff 'SCRIPTSTARTED=$(date +%s); while (( $(date +%s) < \$SCRIPTSTARTED + 85800)); do java -Xmx1024M -Xms1024M -jar server.jar nogui; echo $(date) - server jar stopped >> server-log; sleep 30; done\n'
